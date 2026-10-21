@@ -13,6 +13,21 @@ Anotador de tareas pendientes, subdividido por categorías, con dashboard de est
 - Importar/exportar JSON (archivo o portapapeles).
 - Persistencia en `localStorage` bajo la clave `AG_tasks`.
 
+## Archivos de contexto
+
+| Archivo | Qué es |
+|---|---|
+| `CLAUDE.md` | Índice del proyecto: qué leer según qué toques |
+| `HILO_CONVERSACION.md` | Diario, "en qué quedamos" y decisiones clave |
+| `ANOTACIONES.md` | Pendientes reales y notas de trabajo |
+| `REGLAS_DESARROLLO.md` | Patrones que rompen cosas (leer antes de tocar código) |
+| `CREDENCIALES.md` | Credenciales. **No se versiona** (está en `.gitignore`) |
+| `TREE.md` | Estructura auto-generada |
+| `GUIA_ANIMACIONES_ESTILOS.md` | Índice de la guía de animaciones (detalle en `detalles/`) |
+| `detalles/` | Documentación larga, partida por la regla de 150 líneas |
+
+> **Regla dura**: ningún archivo del proyecto puede pasar las 150 líneas.
+
 ## Estructura
 
 ```
