@@ -44,10 +44,10 @@
 - Variables CSS faltantes (`--radius-sm`, `--ease-standard`) detectadas y agregadas.
 
 ### ⏳ PENDIENTE (no bloqueantes)
-1. **Verificar que la app se vea bien en Pages** (el deploy puede tardar 1-2 min). Probar la URL con cache-buster.
-2. **`CREDENCIALES.md`** — creado, queda local (no versionado).
-3. **Tests headless**: el mock de DOM quedó en `C:\Users\Gaston\AppData\Local\Temp\kilo\test-anotador.js` (temporal). Si se quiere, mover al proyecto como `detalles/test-headless.js` para que no se pierda.
-4. **TREE.md** se regenera con `python C:/Users/Gaston/.claude/hooks/generate-tree.py <root>` (en el hook corre solo, pero NO en subagentes — regenerar a mano).
+1. **`CREDENCIALES.md`** — creado, queda local (no versionado).
+2. **Tests headless**: el mock de DOM quedó en `C:\Users\Gaston\AppData\Local\Temp\kilo\test-anotador.js` (temporal). Si se quiere, mover al proyecto como `detalles/test-headless.js` para que no se pierda.
+3. **TREE.md** se regenera con `python C:/Users/Gaston/.claude/hooks/generate-tree.py <root>` (en el hook corre solo, pero NO en subagentes — regenerar a mano).
+4. **Documentación de contexto completa**: `CLAUDE.md`, `HILO_CONVERSACION.md`, `ANOTACIONES.md`, `REGLAS_DESARROLLO.md`, `CREDENCIALES.md` (local). `GUIA_ANIMACIONES_ESTILOS.md` quedó como índice con el detalle en `detalles/`.
 
 ## Decisiones clave
 

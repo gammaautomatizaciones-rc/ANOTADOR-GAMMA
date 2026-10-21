@@ -5,8 +5,8 @@
 
 ## 🔴 Prioridad alta
 
-1. **Verificar el deploy de GitHub Pages.** El repo se subió a las 23:36 y Pages se habilitó después. Tarda 1-2 min. Probar `https://gammaautomatizaciones-rc.github.io/ANOTADOR-GAMMA/?v=1` (cache-buster, el edge cache miente).
-2. **Los datos no tienen backup automático.** `localStorage` es volátil: si el usuario limpia datos del navegador, pierde todo.Hoy la única salida es exportar JSON a mano. Opciones: (a) auto-export al detectar `beforeunload`, (b) aviso visible en la UI, (c) sincronizar con un backend. Decidir antes de que le pase a un cliente.
+1. ~~**Verificar el deploy de GitHub Pages**~~ — ✅ verificado el 2026-10-21: `index.html` y `partials/header.html` responden 200 en https://gammaautomatizaciones-rc.github.io/ANOTADOR-GAMMA/
+2. **Los datos no tienen backup automático.** `localStorage` es volátil: si el usuario limpia datos del navegador, pierde todo. Hoy la única salida es exportar JSON a mano. Opciones: (a) auto-export al detectar `beforeunload`, (b) aviso visible en la UI, (c) sincronizar con un backend. Decidir antes de que le pase a un cliente.
 3. **Sin control de acceso.** Cualquiera que abra la URL puede usarla, pero **solo ve sus propios datos** (son locales del navegador). No es un riesgo de datos cruzados; sí es un riesgo si se vende como producto. Para venderlo hay que agregar auth.
 
 ## 🟡 Prioridad media
