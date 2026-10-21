@@ -1,0 +1,27 @@
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInSidebar {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes taskAdded {
+    from { opacity: 0; transform: scale(0.94) translateY(6px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes taskRemoved {
+    to { opacity: 0; transform: scale(0.9) translateX(40px); }
+}
+
+@keyframes statusFlash {
+    0% { filter: brightness(1.4); }
+    100% { filter: brightness(1); }
+}
+
+.task.status-change { animation: statusFlash 420ms var(--ease-out); }
+
+.task-input:focus { box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.18); }

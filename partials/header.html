@@ -1,0 +1,17 @@
+<header class="app-header">
+    <div class="header-brand">
+        <h1><span data-icon="clipboard" data-size="20"></span><span>Anotador de Tareas</span></h1>
+        <p class="header-subtitle">Organiza tu día, categoría por categoría</p>
+    </div>
+    <div class="header-actions" id="global-actions">
+        <div class="button-row">
+            <button onclick="exportData()" aria-label="Exportar tareas a JSON"><span data-icon="download" data-size="15"></span> Exportar</button>
+            <button onclick="navigator.clipboard.writeText(exportToJSON()).then(() => alert('JSON copiado al portapapeles'))" aria-label="Copiar JSON al portapapeles"><span data-icon="copy" data-size="15"></span> Copiar JSON</button>
+            <button onclick="document.getElementById('import-input').click()" aria-label="Importar archivo JSON"><span data-icon="upload" data-size="15"></span> Importar Archivo</button>
+        </div>
+        <div class="import-row">
+            <textarea id="json-textarea" placeholder="Pega el JSON aquí para importar"></textarea>
+            <button onclick="importFromJSON(document.getElementById('json-textarea').value)" aria-label="Importar texto JSON">Importar Texto</button>
+        </div>
+    </div>
+</header>

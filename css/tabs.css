@@ -1,0 +1,78 @@
+.view-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 18px;
+    width: fit-content;
+    box-shadow: var(--shadow-sm);
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background var(--dur) var(--ease-out),
+                color var(--dur) var(--ease-out),
+                transform var(--dur) var(--ease-out);
+}
+
+.tab-btn:hover {
+    background: rgba(255, 215, 0, 0.08);
+    color: var(--text);
+    transform: translateY(-1px);
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: #000;
+}
+
+.view {
+    display: none;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.view.active { display: block; }
+
+.icon {
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+button .icon { stroke-width: 2.1; }
+
+.insight .icon { width: 16px; height: 16px; }
+
+.tile-top .icon,
+.panel h3 .icon { opacity: 0.85; }
+
+.empty-icon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px dashed var(--border);
+    margin-bottom: 16px;
+}
+
+.empty-icon .icon {
+    width: 28px;
+    height: 28px;
+    color: var(--text-muted);
+    opacity: 0.5;
+}

@@ -1,0 +1,27 @@
+# Credenciales y secretos
+.env
+.env.*
+config.json
+CREDENCIALES.md
+*credential*
+*_key.md
+*secret*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Build
+dist/
+build/
