@@ -49,10 +49,12 @@ Anotador de tareas con:
 index.html          shell: linkea CSS, carga partials, incluye los 9 scripts
 partials/           header.html · sidebar.html · main.html
 css/                base · sidebar · main · category · tasks · stats · insights · tabs · layout · animations
-js/                 icons · storage · render · tasks · categories · io · stats · app · partials
+js/                 icons · storage · render · tasks · categories · io · stats · stats-view · app · partials
 ```
 
 **Flujo de arranque**: `js/partials.js` hace `fetch` de los 3 partials, los inyecta, y recién ahí llama `initApp()` (en `js/app.js`), que registra listeners y llama `loadData()` → `renderSidebar/renderMain/renderStats`.
+
+**Métricas vs vista**: `js/stats.js` calcula (métricas + insights), `js/stats-view.js` dibuja. Si `stats.js` crece, partir de ahí: el que dibuja va a `stats-view.js`.
 
 ## Reglas del proyecto (duras)
 
@@ -67,5 +69,7 @@ js/                 icons · storage · render · tasks · categories · io · s
 
 - **Local**: `python -m http.server 5500` en la carpeta del proyecto → `http://127.0.0.1:5500`. (O Live Server.)
 - **Online**: https://gammaautomatizaciones-rc.github.io/ANOTADOR-GAMMA/
-- **Test headless del DOM**: `node` con mock de `document`/`localStorage` (patrón usado en la sesión del 21/10/2026, 22 checks).
+- **Deep-link**: `index.html#stats` abre directo en la pestaña de Estadísticas.
+- **Test headless del DOM**: `node` con mock de `document`/`localStorage` (patrón usado en la sesión del 21/10/2026, 22 checks). El mock necesita `global.location = { hash: '' }` (la app lee `location.hash`).
+- **Screenshot headless**: `chrome --headless=new --user-data-dir=<perfil> --screenshot=out.png --virtual-time-budget=5000 <url>`. Con un `--user-data-dir` fijo, se puede setear `localStorage` desde una página semilla y después capturar `index.html#stats`.
 - **Syntax**: `node --check js/*.js` (todos los módulos).

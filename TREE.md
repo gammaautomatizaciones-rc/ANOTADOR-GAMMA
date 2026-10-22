@@ -25,6 +25,7 @@ ANOTADOR GAMMA/
 │   ├── io.js
 │   ├── partials.js
 │   ├── render.js
+│   ├── stats-view.js
 │   ├── stats.js
 │   ├── storage.js
 │   └── tasks.js

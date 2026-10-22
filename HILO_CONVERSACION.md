@@ -3,6 +3,7 @@
 ## Diario (1 línea por sesión)
 
 - **2026-10-21** — Nace ANOTADOR GAMMA. App estática de tareas por categorías. Se armó desde cero: HTML semántico → partials, CSS de 0 en 10 archivos, JS en 9 módulos, iconos SVG propios (se sacaron todos los emojis), pestañas Tareas/Estadísticas, dashboard con anillo de completitud + KPI tiles + balance por categoría + lectura automática del tablero + heatmap de 7 días. Publicada en GitHub (`gammaautomatizaciones-rc/ANOTADOR-GAMMA`) con GitHub Pages.
+- **2026-10-22** — Reordenamiento del dashboard: la actividad de 7 días pasó a ser una tira compacta arriba (celdas 34×24px + contador de acciones) y el balance por categoría / lectura del tablero quedaron grandes con scroll interno (430px, panel-scroll). Se agregó deep-link por hash (`index.html#stats` abre esa pestaña).
 
 ## 🔴 EN QUÉ QUEDAMOS (retomar acá)
 

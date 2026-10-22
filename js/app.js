@@ -22,7 +22,6 @@ function switchView(view) {
         v.classList.toggle('active', v.id === 'view-' + view);
     });
 }
-
 function initApp() {
     mountIcons();
     setupTabs();
@@ -32,4 +31,5 @@ function initApp() {
     document.getElementById('search-input').addEventListener('input', updateSearch);
     document.getElementById('filter-select').addEventListener('change', updateFilter);
     document.getElementById('import-input').addEventListener('change', importData);
+    if (location.hash === '#stats') switchView('stats');
 }
