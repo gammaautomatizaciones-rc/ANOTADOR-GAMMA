@@ -5,27 +5,30 @@
 
 ## 🔴 Prioridad alta
 
-1. ~~**Verificar el deploy de GitHub Pages**~~ — ✅ verificado el 2026-10-21: `index.html` y `partials/header.html` responden 200 en https://gammaautomatizaciones-rc.github.io/ANOTADOR-GAMMA/
-2. **Los datos no tienen backup automático.** `localStorage` es volátil: si el usuario limpia datos del navegador, pierde todo. Hoy la única salida es exportar JSON a mano. Opciones: (a) auto-export al detectar `beforeunload`, (b) aviso visible en la UI, (c) sincronizar con un backend. Decidir antes de que le pase a un cliente.
-3. **Sin control de acceso.** Cualquiera que abra la URL puede usarla, pero **solo ve sus propios datos** (son locales del navegador). No es un riesgo de datos cruzados; sí es un riesgo si se vende como producto. Para venderlo hay que agregar auth.
+1. **Persistencia confiable — el #1.** `localStorage` es volátil: si el usuario limpia los datos del navegador, **pierde todo**. Hoy la única salida es exportar JSON a mano. Opciones: (a) auto-export al detectar `beforeunload`, (b) aviso visible en la UI + "Exportar" destacado, (c) sincronizar con un backend. Decidir antes de que le pase a un cliente. Es local, bajo riesgo y el de más valor de toda la lista.
+2. **Sin control de acceso.** Cualquiera que abra la URL puede usarla, pero **solo ve sus propios datos** (son locales del navegador). No es un riesgo de datos cruzados; sí es un riesgo si se vende como producto. Para venderlo hay que agregar auth.
 
 ## 🟡 Prioridad media
 
-4. **Los tests headless están en un path temporal** (`%TEMP%\kilo\test-anotador.js`) y se pierden al limpiar temp. Si se quiere mantener, mover al proyecto (`detalles/test-headless.js` — remember: <150 líneas, y si no entra, partir).
-5. **Falta favicon.** Se ve el ícono default del browser en la pestaña. Hacer un SVG simple (el ícono `clipboard` del set) y linkearlo.
-6. **No hay reordenamiento de tareas.** Se agregan al final de la lista, no se pueden arrastrar. Drag & drop con HTML5 Drag and Drop API.
-7. **No hay prioridad ni fecha de vencimiento.** Son las dos features que más se piden en un anotador de tareas. `changeStatus` ya es el lugar natural para colgar un campo más.
-8. **El dashboard no tiene rango temporal.** El heatmap mira 7 días fijos. Con más historial, se puede hacer seleccionable (7 / 30 / 90).
-9. **Sin exportar a CSV.** Solo JSON. Para planillas, CSV es lo que pide la gente.
-10. **Sin modo claro.** Está pensado oscuro desde el origen (tema dorado/negro). Si se hace, es agregar un set de variables en `:root` + un `[data-theme="light"]` + un toggle.
+3. **Deshacer el borrado de una tarea.** Hoy un click de más y la tarea desapareció. Un `Ctrl+Z` o un toast con "Deshacer" durante 5s.
+4. **Los tests headless están en un path temporal** (`%TEMP%\kilo\test-anotador.js`) y se pierden al limpiar temp. Moverlos al proyecto (`detalles/test-headless.js` — remember: <150 líneas, y si no entra, partir).
+5. **Sin CI.** Los tests no se corren solos en cada push. Un GitHub Actions con `node --check js/*.js` + el test headless alcanza.
+6. **Falta favicon.** Se ve el ícono default del browser en la pestaña. Hacer un SVG simple (el ícono `clipboard` del set) y linkearlo.
+7. **El texto editable no tiene pista visual.** No se sabe que el nombre de la categoría y el texto de la tarea se editan en el lugar. Un cursor `text` + un lápiz sutil al hover.
+8. **No hay reordenamiento de tareas.** Se agregan al final de la lista, no se pueden arrastrar. Drag & drop con HTML5 Drag and Drop API.
+9. **No hay prioridad ni fecha de vencimiento.** Son las dos features que más se piden en un anotador de tareas. `changeStatus` ya es el lugar natural para colgar un campo más.
+10. **El dashboard no tiene rango temporal.** El heatmap mira 7 días fijos. Con más historial, se puede hacer seleccionable (7 / 30 / 90).
+11. **Sin exportar a CSV.** Solo JSON. Para planillas, CSV es lo que pide la gente.
+12. **Sin modo claro.** Está pensado oscuro desde el origen (tema dorado/negro). Si se hace, es agregar un set de variables en `:root` + un `[data-theme="light"]` + un toggle.
+13. **Card muy ancha en pantallas grandes.** El texto de la tarea queda pegado al borde izquierdo con mucho vacío a la derecha. Un `max-width` al **texto** (no a la card) lo arregla sin volver a angostar la card.
 
 ## 🟢 Prioridad baja / ideas
 
-11. **Arrastrar una categoría para reordenarlas.** Mismo mecanismo que el punto 6.
-12. **Atajos de teclado.** `Ctrl+Enter` en el input, `1/2/3` para cambiar estado, `/` para buscar.
-13. **Deshacer eliminar.** Hoy no hay forma de recuperar una tarea borrada salvo el export previo.
-14. **Vista "todas las categorías"**. Ahora hay que entrar a una categoría para ver sus tareas. Una vista global con filtro por categoría.
-15. **Contador de caracteres** en el input de tarea (títulos largos rompen el layout en móvil).
+14. **Arrastrar una categoría para reordenarlas.** Mismo mecanismo que el punto 8.
+15. **Atajos de teclado.** `Ctrl+Enter` en el input, `1/2/3` para cambiar estado, `/` para buscar.
+16. **Vista "todas las categorías"**. Ahora hay que entrar a una categoría para ver sus tareas. Una vista global con filtro por categoría.
+17. **Contador de caracteres** en el input de tarea (títulos largos rompen el layout en móvil).
+18. **Sincronización entre dispositivos.** Hoy los datos son del navegador. Es el upgrade grande si el anotador pasa a ser la herramienta de trabajo diaria.
 
 ## Notas de trabajo
 
@@ -42,3 +45,5 @@
 - **Variables CSS sin definir** — `--radius-sm` y `--ease-standard` se usaban pero no estaban en `:root`; el anillo de progreso de las stats no renderizaba bien.
 - **Layout roto** — `#app` era flex column con el header adentro, y el footer cortaba el sidebar a media altura. Ahora: `#app` flex column, `.workspace` flex row con `min-height: 0`, footer dentro del main.
 - **Login zombie** — el modal de contraseña estaba en el HTML pero ningún JS lo controlaba. Eliminado.
+- **CSS viejo servido por Pages** — subí un CSS nuevo con la misma URL y el browser lo siguió sirviendo del caché: se veía el heatmap con celdas gigantes. Causa: sin versionado de assets. Ahora todo se linkea con `?v=N` y **hay que bumpearlo en cada deploy** (`REGLAS_DESARROLLO.md` §8).
+- **404 en un archivo con `_` al inicio** — GitHub Pages construye con Jekyll e **ignora** los archivos `_algo.html`: nunca se publican. Renombrado a `diagnostico.html`.
