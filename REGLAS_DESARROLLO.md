@@ -106,3 +106,13 @@ Las tareas viven en el navegador (`AG_tasks`). Si el usuario limpia datos del na
 ## 12. Los `contenteditable` guardan en mayúsculas
 
 `editTask` y `editCategory` guardan `text.trim().toUpperCase()`. Es intencional (tareas y categorías en mayúsculas, como en el original). Si se quiere distinguir, hay que cambiar **las dos** funciones, no una.
+
+## 13. La pantalla de carga
+
+- El overlay `#loader` está **inline en `index.html`** (no en un partial): tiene que existir en el primer paint, antes de que corra cualquier `fetch`. Si viviera en un partial, no se podría mostrar durante la carga de los partials.
+- `js/loader.js` lo controla: `initLoader()` lo muestra, `setLoaderProgress(n)` mueve la barra, `hideLoader()` lo saca.
+- **Duración mínima visible: 700ms** (`LOADER_MIN_VISIBLE`). Sin esto, en una recarga rápida el overlay parpadea y se ve peor que no tenerlo. La barra de progreso avanza en pasos reales, no con un timer falso.
+- El cierre espera a `document.fonts.ready`: si no, la tipografía salta al aparecer la app.
+- `showFatal()` (en `js/partials.js`) **siempre** llama a `hideLoader()`: si los partials fallan, el loader no puede quedar tapando el mensaje de error.
+- La marca se dibuja con `stroke-dasharray`/`stroke-dashoffset` (técnica "logo draw-in"): el ícono `clipboard` del set, no un spinner genérico. Los 3 paths tienen `animation-delay` escalonado para que no se dibujen en lockstep.
+- Con `prefers-reduced-motion: reduce` el ícono se muestra estático y sin shimmer.

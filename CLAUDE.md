@@ -46,13 +46,13 @@ Anotador de tareas con:
 ## Estructura de la app
 
 ```
-index.html          shell: linkea CSS, carga partials, incluye los 9 scripts
+index.html          shell: linkea CSS, carga partials, incluye los 11 scripts
 partials/           header.html · sidebar.html · main.html
-css/                base · sidebar · main · category · tasks · stats · insights · tabs · layout · animations
-js/                 icons · storage · render · tasks · categories · io · stats · stats-view · app · partials
+css/                base · sidebar · main · category · tasks · stats · insights · tabs · layout · animations · loader
+js/                 icons · loader · storage · render · tasks · categories · io · stats · stats-view · app · partials
 ```
 
-**Flujo de arranque**: `js/partials.js` hace `fetch` de los 3 partials, los inyecta, y recién ahí llama `initApp()` (en `js/app.js`), que registra listeners y llama `loadData()` → `renderSidebar/renderMain/renderStats`.
+**Flujo de arranque**: `js/partials.js` inicia el loader → hace `fetch` de los 3 partials → los inyecta → llama `initApp()` (en `js/app.js`) → espera `document.fonts.ready` → cierra el loader.
 
 **Métricas vs vista**: `js/stats.js` calcula (métricas + insights), `js/stats-view.js` dibuja. Si `stats.js` crece, partir de ahí: el que dibuja va a `stats-view.js`.
 

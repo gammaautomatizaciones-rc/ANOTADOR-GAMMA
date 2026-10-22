@@ -1,0 +1,124 @@
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 380ms var(--ease-out), visibility 380ms;
+}
+
+.loader.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loader.is-done {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.loader-bar i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--primary), #FFA500);
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.55);
+    transition: width 420ms var(--ease-out);
+}
+
+.loader-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.loader-mark {
+    width: 56px;
+    height: 56px;
+    color: var(--primary);
+    filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.25));
+}
+
+.loader-mark path,
+.loader-mark rect {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: loaderDraw 2.4s var(--ease-out) infinite;
+}
+
+.loader-mark path:nth-child(2) { animation-delay: 0.18s; }
+.loader-mark path:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes loaderDraw {
+    0% { stroke-dashoffset: 200; }
+    40% { stroke-dashoffset: 0; }
+    70% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 200; }
+}
+
+.loader-title {
+    color: var(--primary);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.loader-status {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 300;
+    min-height: 1.2em;
+}
+
+.loader-status::after {
+    content: '';
+    animation: loaderDots 1.4s steps(4, end) infinite;
+}
+
+@keyframes loaderDots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+}
+
+.loader.is-done .loader-stage {
+    transform: scale(0.94);
+    transition: transform 380ms var(--ease-out);
+}
+
+.loader-stage {
+    transition: transform 380ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .loader {
+        transition: opacity 150ms linear;
+    }
+
+    .loader-mark path,
+    .loader-mark rect {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+
+    .loader-status::after {
+        animation: none;
+        content: '...';
+    }
+}

@@ -10,6 +10,7 @@ ANOTADOR GAMMA/
 │   ├── category.css
 │   ├── insights.css
 │   ├── layout.css
+│   ├── loader.css
 │   ├── main.css
 │   ├── sidebar.css
 │   ├── stats.css
@@ -23,6 +24,7 @@ ANOTADOR GAMMA/
 │   ├── categories.js
 │   ├── icons.js
 │   ├── io.js
+│   ├── loader.js
 │   ├── partials.js
 │   ├── render.js
 │   ├── stats-view.js
