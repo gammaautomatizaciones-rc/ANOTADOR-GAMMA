@@ -62,6 +62,26 @@ icon('trash', 14)                    // en templates JS
 - Pages: branch `main`, path `/`. Cada push a `main` dispara el deploy.
 - ⚠️ El deploy puede tardar ~1-2 min. Verificar con un **cache-buster** (el edge cache miente): `?v=<timestamp>`.
 
+### ⛔ REGLA OBLIGATORIA: bumpear la versión de los assets
+
+**GitHub Pages cachea los `.css` y `.js`. Si subís un CSS nuevo sin cambiar la URL, el navegador del usuario sigue usando el viejo** — y la app se ve rota sin que nada falle en el server. Pasó el 22/10/2026: el JS nuevo cargó pero `css/insights.css` quedó viejo (celdas del heatmap gigantes).
+
+Todos los assets se linkean con un parámetro de versión:
+
+- `index.html` → `css/base.css?v=1`, `js/app.js?v=1`, etc.
+- `js/partials.js` → `partials/header.html?v=1`, etc.
+
+**En cada deploy: subir el `?v=N` a `N+1` en `index.html` Y en `js/partials.js`.** Los partials también se cachean: si no se bumpean, el layout del partial queda viejo aunque el JS sea nuevo.
+
+Verificación post-deploy (con cache-buster, siempre):
+
+```powershell
+$ts = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+(Invoke-WebRequest "https://gammaautomatizaciones-rc.github.io/ANOTADOR-GAMMA/css/insights.css?v=$ts" -UseBasicParsing).Content -match 'repeat\(7, 34px\)'
+```
+
+Si devuelve `False`, el deploy todavía no llegó. Si devuelve `True` y el usuario lo ve viejo → es caché del navegador: que haga **Ctrl+Shift+R**.
+
 ## 9. Git: el PAT no va en `.git/config`
 
 - El token de `gh` CLI **está inválido** en el keyring (cuenta `gammaautomatizaciones-rc`). Usar el PAT de `~/.claude/credenciales/key_github_gammaautomatizaciones-rc.md`.

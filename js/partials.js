@@ -1,7 +1,7 @@
 const PARTIALS = [
-    { url: 'partials/header.html', target: 'partial-header' },
-    { url: 'partials/sidebar.html', target: 'partial-sidebar' },
-    { url: 'partials/main.html', target: 'partial-main' }
+    { url: 'partials/header.html?v=1', target: 'partial-header' },
+    { url: 'partials/sidebar.html?v=1', target: 'partial-sidebar' },
+    { url: 'partials/main.html?v=1', target: 'partial-main' }
 ];
 
 function showFatal(message, detail) {
