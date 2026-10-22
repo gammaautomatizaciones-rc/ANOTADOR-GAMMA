@@ -128,3 +128,18 @@ Para inspeccionar los frames de una animación:
 3. Renderizar N celdas, una por frame, y capturar una sola imagen.
 
 Ejemplo real: `css/loader.css` (`loaderHop`) se verificó así.
+
+### ⛔ GitHub Pages ignora los archivos que empiezan con `_`
+
+GitHub Pages construye con Jekyll, y todo archivo cuyo nombre empieza con `_` queda **fuera del build** (convención de Jekyll: `_layouts`, `_posts`, `_data`...). Un `404` en un archivo `_algo.html` no es un problema de deploy: **el archivo nunca se publicó**.
+
+- Los partials de este proyecto van sin `_` justamente por eso: `partials/header.html`, `partials/sidebar.html`, `partials/main.html`.
+- Para una página de diagnóstico, usar nombre sin underscore: `diagnostico.html`.
+
+### Diagnóstico de animaciones
+
+`diagnostico.html` (en el repo, y por lo tanto en Pages) muestra en pantalla:
+- Si `prefers-reduced-motion: reduce` está activo. **Chrome no tiene toggle para esto**: lo hereda de Windows (Configuración → Accesibilidad → Efectos visuales → Animaciones). Por eso no aparece en `chrome://settings/accessibility`.
+- Si el `loader.css` cargado tiene el `@keyframes loaderHop` (o sea, si el CSS viejo sigue en el caché).
+
+URL: https://gammaautomatizaciones-rc.github.io/ANOTADOR-GAMMA/diagnostico.html

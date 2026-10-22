@@ -40,6 +40,7 @@ ANOTADOR GAMMA/
 ├── ANOTACIONES.md
 ├── CLAUDE.md
 ├── CREDENCIALES.md
+├── diagnostico.html
 ├── GUIA_ANIMACIONES_ESTILOS.md
 ├── HILO_CONVERSACION.md
 ├── index.html
