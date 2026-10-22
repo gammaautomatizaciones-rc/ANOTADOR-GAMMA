@@ -10,6 +10,7 @@ ANOTADOR GAMMA/
 │   ├── category.css
 │   ├── insights.css
 │   ├── layout.css
+│   ├── loader-anim.css
 │   ├── loader.css
 │   ├── main.css
 │   ├── sidebar.css

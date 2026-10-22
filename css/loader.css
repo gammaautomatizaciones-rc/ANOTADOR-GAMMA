@@ -11,15 +11,8 @@
     transition: opacity 380ms var(--ease-out), visibility 380ms;
 }
 
-.loader.is-visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.loader.is-done {
-    opacity: 0;
-    visibility: hidden;
-}
+.loader.is-visible { opacity: 1; visibility: visible; }
+.loader.is-done { opacity: 0; visibility: hidden; }
 
 .loader-bar {
     position: absolute;
@@ -47,28 +40,48 @@
     gap: 14px;
 }
 
+.loader-jump {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding-bottom: 12px;
+}
+
 .loader-mark {
     width: 56px;
     height: 56px;
     color: var(--primary);
+    transform-origin: 50% 100%;
     filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.25));
+    animation: loaderHop 1.4s var(--ease-standard) infinite;
+}
+
+.loader-shadow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 38px;
+    height: 6px;
+    margin-left: -19px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.22);
+    filter: blur(2px);
+    animation: loaderShadow 1.4s var(--ease-standard) infinite;
 }
 
 .loader-mark path,
 .loader-mark rect {
     stroke-dasharray: 200;
     stroke-dashoffset: 200;
-    animation: loaderDraw 2.4s var(--ease-out) infinite;
+    animation: loaderDraw 1.4s var(--ease-out) infinite both;
 }
 
-.loader-mark path:nth-child(2) { animation-delay: 0.18s; }
-.loader-mark path:nth-child(3) { animation-delay: 0.36s; }
+.loader-mark path:nth-child(2) { animation-delay: 0.12s; }
+.loader-mark path:nth-child(3) { animation-delay: 0.24s; }
 
-@keyframes loaderDraw {
-    0% { stroke-dashoffset: 200; }
-    40% { stroke-dashoffset: 0; }
-    70% { stroke-dashoffset: 0; }
-    100% { stroke-dashoffset: 200; }
+.loader-title,
+.loader-status {
+    animation: loaderText 1.4s var(--ease-standard) infinite both;
 }
 
 .loader-title {
@@ -90,35 +103,22 @@
     animation: loaderDots 1.4s steps(4, end) infinite;
 }
 
-@keyframes loaderDots {
-    0% { content: ''; }
-    25% { content: '.'; }
-    50% { content: '..'; }
-    75% { content: '...'; }
-}
-
-.loader.is-done .loader-stage {
-    transform: scale(0.94);
-    transition: transform 380ms var(--ease-out);
-}
-
-.loader-stage {
-    transition: transform 380ms var(--ease-out);
-}
-
 @media (prefers-reduced-motion: reduce) {
-    .loader {
-        transition: opacity 150ms linear;
-    }
+    .loader { transition: opacity 150ms linear; }
 
     .loader-mark path,
-    .loader-mark rect {
+    .loader-mark rect,
+    .loader-mark,
+    .loader-shadow,
+    .loader-title,
+    .loader-status {
         animation: none;
         stroke-dashoffset: 0;
     }
 
-    .loader-status::after {
-        animation: none;
-        content: '...';
-    }
+    .loader-mark { transform: none; opacity: 1; }
+    .loader-shadow { opacity: 0.4; }
+    .loader-title, .loader-status { opacity: 1; transform: none; }
+
+    .loader-status::after { animation: none; content: '...'; }
 }

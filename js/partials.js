@@ -1,7 +1,7 @@
 const PARTIALS = [
-    { url: 'partials/header.html?v=2', target: 'partial-header' },
-    { url: 'partials/sidebar.html?v=2', target: 'partial-sidebar' },
-    { url: 'partials/main.html?v=2', target: 'partial-main' }
+    { url: 'partials/header.html?v=3', target: 'partial-header' },
+    { url: 'partials/sidebar.html?v=3', target: 'partial-sidebar' },
+    { url: 'partials/main.html?v=3', target: 'partial-main' }
 ];
 
 function showFatal(message, detail) {
@@ -21,7 +21,7 @@ async function loadPartials() {
             document.getElementById(p.target).innerHTML = await res.text();
         }));
     } catch (err) {
-        showFatal('No se pudieron cargar los componentes. ServÃ­ la carpeta con un servidor local (Live Server) en vez de abrir el archivo con doble clic.', err);
+        showFatal('No se pudieron cargar los componentes. ServÃƒÂ­ la carpeta con un servidor local (Live Server) en vez de abrir el archivo con doble clic.', err);
         return;
     }
 
@@ -30,7 +30,7 @@ async function loadPartials() {
     try {
         initApp();
     } catch (err) {
-        showFatal('Error al iniciar la aplicaciÃ³n.', err);
+        showFatal('Error al iniciar la aplicaciÃƒÂ³n.', err);
         return;
     }
 

@@ -116,3 +116,15 @@ Las tareas viven en el navegador (`AG_tasks`). Si el usuario limpia datos del na
 - `showFatal()` (en `js/partials.js`) **siempre** llama a `hideLoader()`: si los partials fallan, el loader no puede quedar tapando el mensaje de error.
 - La marca se dibuja con `stroke-dasharray`/`stroke-dashoffset` (técnica "logo draw-in"): el ícono `clipboard` del set, no un spinner genérico. Los 3 paths tienen `animation-delay` escalonado para que no se dibujen en lockstep.
 - Con `prefers-reduced-motion: reduce` el ícono se muestra estático y sin shimmer.
+
+### ⛔ Chrome headless SIEMPRE reporta `prefers-reduced-motion: reduce`
+
+El flag `--force-prefers-reduced-motion=no-preference` **no lo cambia** (verificado el 22/10/2026). Consecuencia: cualquier captura headless de una animación con bloque `prefers-reduced-motion` muestra la **versión estática**, y parece que la animación "no funciona" cuando sí funciona.
+
+Para inspeccionar los frames de una animación:
+
+1. Crear una página de test que re-declare las animaciones con `!important` (gana sobre el bloque del media query).
+2. Congelar cada frame con `animation-play-state: paused` + `animation-delay: -Xs` inline **con `!important`** (el shorthand resetea el delay).
+3. Renderizar N celdas, una por frame, y capturar una sola imagen.
+
+Ejemplo real: `css/loader.css` (`loaderHop`) se verificó así.

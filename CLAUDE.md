@@ -48,7 +48,7 @@ Anotador de tareas con:
 ```
 index.html          shell: linkea CSS, carga partials, incluye los 11 scripts
 partials/           header.html · sidebar.html · main.html
-css/                base · sidebar · main · category · tasks · stats · insights · tabs · layout · animations · loader
+css/                base · sidebar · main · category · tasks · stats · insights · tabs · layout · animations · loader · loader-anim
 js/                 icons · loader · storage · render · tasks · categories · io · stats · stats-view · app · partials
 ```
 

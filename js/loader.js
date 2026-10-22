@@ -1,4 +1,4 @@
-const LOADER_MIN_VISIBLE = 700;
+const LOADER_MIN_VISIBLE = 900;
 const loaderStart = Date.now();
 let loaderProgress = 0;
 let loaderDone = false;
